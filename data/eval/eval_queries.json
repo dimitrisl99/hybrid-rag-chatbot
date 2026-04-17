@@ -1,0 +1,66 @@
+[
+  {
+    "query": "What is retrieval-augmented generation?",
+    "relevant_sources": [
+      "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+      "REALM Retrieval-Augmented Language Model Pre-Training.pdf",
+      "SELF-RAG LEARNING TO RETRIEVE, GENERATE, AND.pdf",
+      "The Survey of Retrieval-Augmented Text Generation in Large.pdf",
+      "LIGHTRAG SIMPLE AND FAST.pdf"
+    ]
+  },
+  {
+    "query": "How does BM25 differ from dense retrieval?",
+    "relevant_sources": [
+      "Dense Passage Retrieval for Open-Domain Question Answering.pdf",
+      "Unsupervised Dense Information Retrieval with.pdf",
+      "APPROXIMATE NEAREST NEIGHBOR NEGATIVE CONTRASTIVE LEARNING FOR DENSE TEXT RETRIEVAL.pdf",
+      "Neural Information Retrieval A Literature Review.pdf"
+    ]
+  },
+  {
+    "query": "How does SELF-RAG work?",
+    "relevant_sources": [
+      "SELF-RAG LEARNING TO RETRIEVE, GENERATE, AND.pdf"
+    ]
+  },
+  {
+    "query": "What is ColBERT used for?",
+    "relevant_sources":
+    ["ColBERT Efficient and Effective Passage Search via.pdf"
+    ]
+  },
+  {
+    "query": "How does REALM differ from RAG?",
+    "relevant_sources": [
+      "REALM Retrieval-Augmented Language Model Pre-Training.pdf",
+      "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf"
+    ]
+  },
+  {
+    "query": "What is dense retrieval?",
+    "relevant_sources": [
+      "Dense Passage Retrieval for Open-Domain Question Answering.pdf",
+      "Unsupervised Dense Information Retrieval with.pdf",
+      "APPROXIMATE NEAREST NEIGHBOR NEGATIVE CONTRASTIVE LEARNING FOR DENSE TEXT RETRIEVAL.pdf"
+    ]
+  },
+  {
+    "query": "What are the benefits of hybrid retrieval?",
+    "relevant_sources": [
+      "Dense Passage Retrieval for Open-Domain Question Answering.pdf",
+      "Unsupervised Dense Information Retrieval with.pdf",
+      "SPLADE Sparse Lexical and Expansion Model.pdf",
+      "ColBERT Eﬀicient and Eﬀective Passage Search via.pdf"
+    ]
+  },
+  {
+    "query": "How does retrieval help reduce hallucinations?",
+    "relevant_sources": [
+      "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.pdf",
+      "SELF-RAG LEARNING TO RETRIEVE, GENERATE, AND.pdf",
+      "Toolformer Language Models Can Teach Themselves to Use Tools.pdf",
+      "The Survey of Retrieval-Augmented Text Generation in Large.pdf"
+    ]
+  }
+]
