@@ -1,0 +1,29 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Virtual env
+.venv/
+
+# IDE
+.idea/
+
+# Streamlit
+.streamlit/secrets.toml
+
+# Data / local indexes / DB
+data/raw/
+data/processed/
+data/chroma_db/
+data/index_numpy/
+
+# Generated files
+*.npy
+*.bin
+*.sqlite3
+*.pickle
+
+# OS
+.DS_Store
+Thumbs.db
