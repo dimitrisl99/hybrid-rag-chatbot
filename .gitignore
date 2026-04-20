@@ -13,7 +13,8 @@ __pycache__/
 .streamlit/secrets.toml
 
 # Data / local indexes / DB
-data/raw/
+data/raw/*
+!data/raw/.gitkeep
 data/processed/
 data/chroma_db/
 data/index_numpy/
@@ -23,6 +24,7 @@ data/index_numpy/
 *.bin
 *.sqlite3
 *.pickle
+*.index
 
 # OS
 .DS_Store
