@@ -1,0 +1,12 @@
+streamlit
+langchain
+langchain-core
+langchain-chroma
+langchain-huggingface
+langchain-ollama
+sentence-transformers
+rank-bm25
+chromadb
+faiss-cpu
+numpy
+pymupdf
