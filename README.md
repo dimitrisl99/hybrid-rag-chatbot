@@ -1,93 +1,116 @@
-# Hybrid RAG Chatbot with Reranking and Evaluation
+# 💬 Hybrid RAG Chatbot (BM25 + Dense + Reranker + Citations)
 
-This project implements a **Hybrid Retrieval-Augmented Generation (RAG) system** for question answering over document collections. It combines classical information retrieval techniques with modern neural retrieval and reranking methods to improve answer relevance and grounding.
+A **production-style Retrieval-Augmented Generation (RAG) system** that combines sparse and dense retrieval with reranking and **citation-aware answer generation**.
 
----
-
-## Overview
-
-The system integrates multiple retrieval and generation components:
-
-- Dense retrieval using embedding models  
-- Sparse retrieval (BM25) for lexical matching  
-- Hybrid fusion using Reciprocal Rank Fusion (RRF)  
-- Cross-encoder reranking for improved relevance  
-- LLM-based answer generation using retrieved context  
-- Evaluation pipeline with standard IR metrics  
-
-The objective is to explore how combining retrieval strategies impacts performance and answer quality.
+> Designed to demonstrate how hybrid retrieval improves factual grounding, answer quality, and explainability.
 
 ---
 
-## System Architecture
+## 💡 Why this matters
 
-The pipeline consists of the following stages:
+Large Language Models can hallucinate when they lack grounding.
 
-### 1. Document Ingestion
-- PDF loading and preprocessing (PyMuPDF)
-- Cleaning and normalization
-- Semantic chunking based on similarity
+This project demonstrates how combining:
+- Hybrid retrieval (BM25 + Dense)
+- Reranking
+- Citation-aware prompting
 
-### 2. Indexing
-- Embedding generation using HuggingFace models
-- Storage of embeddings (NumPy / FAISS)
-- Optional ChromaDB persistence
-
-### 3. Retrieval
-- Dense retrieval via vector similarity
-- Sparse retrieval via BM25
-- Hybrid fusion using Reciprocal Rank Fusion (RRF)
-
-### 4. Reranking
-- Cross-encoder model (`ms-marco-MiniLM`)
-- Re-scoring and reordering of retrieved documents
-
-### 5. Answer Generation
-- Local LLM via Ollama (`phi3:mini`)
-- Prompt-based generation constrained to retrieved context
-- Inline citations (e.g. [B1], [B2])
+can significantly improve:
+- factual accuracy
+- interpretability
+- trust in generated answers
 
 ---
 
-## Evaluation
+## 🚀 Features
 
-The project includes an evaluation pipeline supporting:
+- 🔍 **Hybrid Retrieval**
+  - BM25 (lexical)
+  - Dense embeddings (semantic)
+  - Fusion via Reciprocal Rank Fusion (RRF)
 
-- Hit@K  
-- Recall@K  
-- Mean Reciprocal Rank (MRR@K)  
+- 🧠 **Reranking**
+  - Cross-encoder (`ms-marco-MiniLM`)
+  - Improves precision of top results
 
-This enables comparison between:
-- Dense retrieval  
-- BM25 retrieval  
-- Hybrid retrieval  
+- 🤖 **Local LLM (Ollama)**
+  - Supports multiple models:
+    - `qwen3:8b` ⭐ (recommended)
+    - `llama3`
+    - `mistral`
+    - `phi3:mini`
 
-### Example Results
+- 📎 **Citation-aware answers**
+  - Inline references: `[B1], [B2]`
+  - Clickable → jump to source chunks
 
-| Method  | Hit@5 | Recall@5 | MRR@5 |
-|--------|------|----------|-------|
-| Dense  | 0.80 | 0.72     | 0.65  |
-| BM25   | 0.76 | 0.70     | 0.60  |
-| Hybrid | 0.88 | 0.81     | 0.74  |
+- 🖥️ **Interactive UI (Streamlit)**
+  - Ask questions
+  - Inspect retrieved context
+  - View sources
 
+- 📊 **Evaluation pipeline**
+  - Hit@K
+  - Recall@K
+  - MRR@K
 
 ---
 
-## Demo
+## 🧠 System Pipeline
 
-A Streamlit interface is provided:
-
-```bash
-streamlit run app.py
+```
+User Query
+↓
+Hybrid Retrieval (BM25 + Dense)
+↓
+RRF Fusion
+↓
+Cross-Encoder Reranking
+↓
+Top-K Context
+↓
+LLM (Ollama)
+↓
+Answer + Citations [B1], [B2]
 ```
 
-Features:
+---
 
-- Interactive question answering
-- Source attribution
-- Retrieved context inspection
+## 🧪 Example
 
-## Setup
+**Question**
+
+```
+How does BM25 differ from dense retrieval?
+```
+
+**Answer**
+
+```
+Dense retrieval uses embeddings to retrieve semantically similar documents [B1], 
+while BM25 relies on keyword matching and term frequency statistics [B2].
+```
+
+--- 
+
+## 🖥️ Demo
+
+### 🧭 Interface Overview
+
+![Interface Overview](screenshots/home.png)
+
+*Interactive UI with model selection and hybrid retrieval pipeline*
+
+---
+
+### 💬 Example Question & Answer
+
+![Answer with citations](screenshots/ans.png)
+*Citation-aware answer with clickable sources and retrieved context*
+
+
+
+## ⚙️ Setup
 
 1. Clone the repository
 
@@ -120,14 +143,14 @@ https://ollama.com/
 
 **Pull model**
 ```
-ollama pull phi3:mini
+ollama pull qwen3:8b
 ```
 **Run model (optional test)**
 ```
-ollama run phi3:mini
+ollama run qwen3:8b
 ```
 
-## Running the Full Pipeline
+## ▶️ Running the Full Pipeline
 
 Follow these steps to run the full RAG pipeline:
 
@@ -149,7 +172,7 @@ python -m src.export_index
 streamlit run app.py
 ```
 
-## Project Structure
+## 📁 Project Structure
 
 ```
 src/
@@ -169,7 +192,32 @@ data/
   ├── eval/         # evaluation queries
 ```
 
-## Future Work
+## 📊 Evaluation
+
+The project includes an evaluation pipeline supporting:
+
+- Hit@K  
+- Recall@K  
+- Mean Reciprocal Rank (MRR@K)  
+
+This enables comparison between:
+- Dense retrieval  
+- BM25 retrieval  
+- Hybrid retrieval  
+
+### Example Results
+
+| Method  | Hit@5 | Recall@5 | MRR@5 |
+|--------|------|----------|-------|
+| Dense  | 0.80 | 0.72     | 0.65  |
+| BM25   | 0.76 | 0.70     | 0.60  |
+| Hybrid | 0.88 | 0.81     | 0.74  |
+
+Hybrid retrieval consistently outperforms individual methods by combining lexical precision with semantic understanding.
+
+---
+
+## 🧭 Future Work
 
 - Query expansion techniques
 - Improved chunking strategies
@@ -177,6 +225,6 @@ data/
 - More extensive evaluation benchmarks
 - Support for additional document types
 
-## Author 
+## 👤 Author
 
 Dimitris Loukakis
